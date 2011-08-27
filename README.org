@@ -1,30 +1,36 @@
 * README
 ** Storage
 
-I found I wanted a shared persistant map for little odds and ends of code I run 
+I found I wanted a shared persistent map for little odds and ends of code I run 
 locally on my laptop. this is a simplifying layer on top of infinispan
+
+the idea is you run the persisting node as a service, and other
+clients and write data in or read at using a simple get/put interface
 
 ** Usage
 
 to setup a node that persists to disk:
 
-lein install storage 1.0.0-SNAPSHOT
+: lein install storage 1.0.0-SNAPSHOT
 
-~/.lein/bin/storage ~/.some-place
+: ~/.lein/bin/storage ~/.some-place
 
 (I have launchd run the above)
 
 then in projects that will consumer this:
 
 in project.clj
-[storage "1.0.0-SNAPSHOT"]
+
+: [storage "1.0.0-SNAPSHOT"]
 
 in your ns
-(:require [storage.client :as storage])
 
-(storage/put :some-key :some-value)
+: (:require [storage.client :as storage])
 
-(storage/get :some-key)
+...
+
+: (storage/put :some-key :some-value)
+: (storage/get :some-key)
 
 ** License
 
