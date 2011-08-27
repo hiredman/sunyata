@@ -1,0 +1,15 @@
+#!/bin/sh
+
+CLASSPATH="%s"
+MAIN="%s"
+VERSION="%s"
+
+exec /usr/bin/java \
+    -server \
+    -Dfile.encoding=utf-8 \
+    -Dswank.encoding=utf-8 \
+    -Djgroups.bind_addr=localhost \
+    -cp $CLASSPATH \
+    storage.core \
+    "$@"
+  
