@@ -1,4 +1,4 @@
-(defproject sunyata "1.0.0"
+(defproject sunyata "1.0.1-SNAPSHOT"
   :description "yield your values to nothing and receive from nothing"
   :repositories {"jboss"
                  "http://repository.jboss.org/nexus/content/groups/public-jboss/"}
