@@ -21,7 +21,7 @@ then in projects that will consumer this:
 
 in project.clj
 
-: [sunyata "1.0.0-SNAPSHOT"]
+: [sunyata "1.0.0"]
 
 in your ns
 

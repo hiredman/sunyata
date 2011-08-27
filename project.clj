@@ -1,5 +1,5 @@
-(defproject sunyata "1.0.0-SNAPSHOT"
-  :description "FIXME: write description"
+(defproject sunyata "1.0.0"
+  :description "yield your values to nothing and receive from nothing"
   :repositories {"jboss"
                  "http://repository.jboss.org/nexus/content/groups/public-jboss/"}
   :dependencies [[clojure "1.3.0-beta1"]
