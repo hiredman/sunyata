@@ -8,7 +8,7 @@
            (org.infinispan.loaders.cluster ClusterCacheLoaderConfig)
            (org.infinispan.loaders CacheLoaderConfig)))
 
-(defn mkconfig []
+(defn make-configuration []
   (-> (Configuration.)
       (.fluent)
       (.mode Configuration$CacheMode/REPL_ASYNC)
@@ -22,27 +22,29 @@
         [(ClusterCacheLoaderConfig.)]))
       (.build)))
 
-(defn mkglobal-config [clustername]
+(defn make-global-configuration [cluster-name]
   (-> (GlobalConfiguration/getClusteredDefault)
       (.fluent)
       (.transport)
-      (.clusterName clustername)
+      (.clustername cluster-name)
       (.addProperty "configurationFile" "jgroups-storage.xml")
       (.transportClass JGroupsTransport)
       (.build)))
 
-(defn mkmanager [clustername]
-  (DefaultCacheManager. (mkglobal-config clustername) (mkconfig)))
+(defn mkmanager [cluster-name]
+  (DefaultCacheManager.
+    (make-global-configuration cluster-name)
+    (make-configuration)))
 
-(def _cache
-  (delay
-   (.getCache (mkmanager "storage") "storage" true)))
+(defonce _manager (delay (mkmanager "storage")))
+
+(defonce _cache (delay (.getCache (force _manager) "storage" true)))
 
 (defn get [key]
-  (.get @_cache key))
+  (.get (force _cache) key))
 
 (defn put [key value]
-  (.put @_cache key value))
+  (.put (force _cache) key value))
 
 (defn update-in! [keys fun & args]
   (let [[k & ks] keys
@@ -52,4 +54,4 @@
              (apply fun v args)))))
 
 (defn remove [key]
-  (.remove @_cache key))
+  (.remove (force _cache) key))
