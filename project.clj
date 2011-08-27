@@ -1,4 +1,4 @@
-(defproject storage "1.0.0-SNAPSHOT"
+(defproject sunyata "1.0.0-SNAPSHOT"
   :description "FIXME: write description"
   :repositories {"jboss"
                  "http://repository.jboss.org/nexus/content/groups/public-jboss/"}
@@ -6,7 +6,7 @@
                  [org.infinispan/infinispan-core "5.0.0.FINAL"]
                  [ch.qos.logback/logback-classic "0.9.24"]
                  [swank-clojure "1.4.0-SNAPSHOT"]]
-  :main storage.core
-  :shell-wrapper {:bin "bin/storage"
-                  :main storage.core}
+  :main sunyata.core
+  :shell-wrapper {:bin "bin/sunyata"
+                  :main sunyata.core}
   :clean-non-project-classes true)

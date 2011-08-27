@@ -10,5 +10,5 @@ exec /usr/bin/java \
     -Dswank.encoding=utf-8 \
     -Djgroups.bind_addr=localhost \
     -cp $CLASSPATH \
-    storage.core \
+    $MAIN \
     "$@"

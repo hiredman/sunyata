@@ -1,4 +1,4 @@
-(ns storage.client
+(ns sunyata.client
   (:refer-clojure :exclude [get remove])
   (:import (org.infinispan.config Configuration GlobalConfiguration
                                   Configuration$CacheMode)

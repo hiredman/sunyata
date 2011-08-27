@@ -1,4 +1,4 @@
-(ns storage.core
+(ns sunyata.core
   (:require [swank.swank :as swank])
   (:import (org.infinispan.config Configuration GlobalConfiguration
                                   Configuration$CacheMode)
