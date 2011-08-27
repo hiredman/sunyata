@@ -1,0 +1,12 @@
+(defproject storage "1.0.0-SNAPSHOT"
+  :description "FIXME: write description"
+  :repositories {"jboss"
+                 "http://repository.jboss.org/nexus/content/groups/public-jboss/"}
+  :dependencies [[clojure "1.3.0-beta1"]
+                 [org.infinispan/infinispan-core "5.0.0.FINAL"]
+                 [ch.qos.logback/logback-classic "0.9.24"]
+                 [swank-clojure "1.4.0-SNAPSHOT"]]
+  :main storage.core
+  :shell-wrapper {:bin "bin/storage"
+                  :main storage.core}
+  :clean-non-project-classes true)

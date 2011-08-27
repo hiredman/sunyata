@@ -1,0 +1,30 @@
+# storage
+
+I found I wanted a shared persistant map for little odds and ends of code I run 
+locally on my laptop. this is a simplifying layer on top of infinispan
+
+## Usage
+
+to setup a node that persists to disk:
+
+lein install storage 1.0.0-SNAPSHOT
+
+~/.lein/bin/storage ~/.some-place
+
+then in projects that will consumer this:
+
+in project.clj
+[storage "1.0.0-SNAPSHOT"]
+
+in your ns
+(:require [storage.client :as storage])
+
+(storage/put :some-key :some-value)
+
+(storage/get :some-key)
+
+## License
+
+Copyright (C) 2011 Kevin Downey
+
+Distributed under the Eclipse Public License, the same as Clojure.
