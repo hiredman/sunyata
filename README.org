@@ -1,5 +1,5 @@
-* README
-** Sunyata
+* Sunyata
+** Why?
 
 I found I wanted a shared persistent map for little odds and ends of code I run 
 locally on my laptop. this is a simplifying layer on top of infinispan
