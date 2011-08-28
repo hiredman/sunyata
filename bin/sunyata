@@ -4,7 +4,7 @@ CLASSPATH="%s"
 MAIN="%s"
 VERSION="%s"
 
-exec /usr/bin/java \
+exec java \
     -server \
     -Xmx200m \
     -Xms10m \
