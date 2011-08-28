@@ -6,6 +6,8 @@ VERSION="%s"
 
 exec /usr/bin/java \
     -server \
+    -Xmx200m \
+    -Xms10m \
     -Dfile.encoding=utf-8 \
     -Dswank.encoding=utf-8 \
     -Djgroups.bind_addr=localhost \
