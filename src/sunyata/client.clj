@@ -31,12 +31,12 @@
       (.transportClass JGroupsTransport)
       (.build)))
 
-(defn mkmanager [cluster-name]
+(defn make-manager [cluster-name]
   (DefaultCacheManager.
     (make-global-configuration cluster-name)
     (make-configuration)))
 
-(defonce _manager (delay (mkmanager "storage")))
+(defonce _manager (delay (make-manager "storage")))
 
 (defonce _cache (delay (.getCache (force _manager) "storage" true)))
 
