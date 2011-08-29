@@ -10,6 +10,7 @@ exec java \
     -Xms10m \
     -Dfile.encoding=utf-8 \
     -Dswank.encoding=utf-8 \
+    -Dproject.version=$VERSION \
     -cp $CLASSPATH \
     $MAIN \
     "$@"

@@ -5,8 +5,10 @@
   :dependencies [[clojure "1.3.0-beta1"]
                  [org.infinispan/infinispan-core "5.0.0.FINAL"]
                  [ch.qos.logback/logback-classic "0.9.24"]
-                 [swank-clojure "1.4.0-SNAPSHOT"]]
+                 [swank-clojure "1.4.0-SNAPSHOT"]
+                 [org.clojure/tools.logging "0.1.2"]]
   :main sunyata.core
   :shell-wrapper {:bin "bin/sunyata"
                   :main sunyata.core}
-  :clean-non-project-classes true)
+  :clean-non-project-classes true
+  :class-file-whitelist #"^(sunyata|clojure/tools/logging/Log)")

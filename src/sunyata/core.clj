@@ -1,5 +1,6 @@
 (ns sunyata.core
-  (:require [swank.swank :as swank])
+  (:require [swank.swank :as swank]
+            [clojure.tools.logging :as log])
   (:import (org.infinispan.config Configuration GlobalConfiguration
                                   Configuration$CacheMode)
            (org.infinispan.loaders.file FileCacheStoreConfig)
@@ -47,6 +48,7 @@
     (mkconfig storage)))
 
 (defn -main [& [storage]]
+  (log/info (str "sunyata-" (System/getProperty "project.version")))
   (future
     (swank/start-repl 3456))
   (let [c (.getCache (mkmanager "storage" storage) "storage" true)]
