@@ -26,7 +26,7 @@
   (-> (GlobalConfiguration/getClusteredDefault)
       (.fluent)
       (.transport)
-      (.clustername cluster-name)
+      (.clusterName cluster-name)
       (.addProperty "configurationFile" "jgroups-storage.xml")
       (.transportClass JGroupsTransport)
       (.build)))
