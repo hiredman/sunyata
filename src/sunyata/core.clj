@@ -22,14 +22,7 @@
        (into-array
         CacheLoaderConfig
         [(-> (FileCacheStoreConfig.)
-             (.location storage)
-             #_(doto (-> (.singletonStore)
-                       (.enabled true)))
-             #_(.streamBufferSize (int 1800))
-             #_(.asyncStore)
-             #_(.threadPoolSize (Integer. 10))
-             #_(.ignoreModifications false)
-             #_(.purgeSynchronously false))
+             (.location storage))
          (ClusterCacheLoaderConfig.)]))
       (.build)))
 
