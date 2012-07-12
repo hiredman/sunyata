@@ -11,6 +11,7 @@ exec java \
     -Dfile.encoding=utf-8 \
     -Dswank.encoding=utf-8 \
     -Dproject.version=$VERSION \
+    -Djava.net.preferIPv4Stack=true \
     -cp $CLASSPATH \
     $MAIN \
     "$@"
