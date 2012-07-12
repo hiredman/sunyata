@@ -26,24 +26,32 @@
          (ClusterCacheLoaderConfig.)]))
       (.build)))
 
-(defn mkglobal-config [clustername]
-  (-> (GlobalConfiguration/getClusteredDefault)
-      (.fluent)
-      (.transport)
-      (.clusterName clustername)
-      (.addProperty "configurationFile" "jgroups-storage.xml")
-      (.transportClass JGroupsTransport)
-      (.build)))
+(defn mkglobal-config
+  ([clustername]
+     (mkglobal-config clustername "jgroups-storage.xml"))
+  ([clustername jgroups-configuration-file]
+     (-> (GlobalConfiguration/getClusteredDefault)
+         (.fluent)
+         (.transport)
+         (.clusterName clustername)
+         (.addProperty "configurationFile" jgroups-configuration-file)
+         (.transportClass JGroupsTransport)
+         (.build))))
 
-(defn mkmanager [clustername storage]
+(defn mkmanager [clustername storage & {:keys [jgroups-configuration-file]}]
   (DefaultCacheManager.
-    (mkglobal-config clustername)
+    (if jgroups-configuration-file
+      (mkglobal-config clustername jgroups-configuration-file)
+      (mkglobal-config clustername))
     (mkconfig storage)))
+
+(defn get-cache [manager cache-name]
+  (.getCache manager cache-name true))
 
 (defn -main [& [storage]]
   (log/info (str "sunyata-" (System/getProperty "project.version")))
   (future
     (swank/start-repl 3456))
-  (let [c (.getCache (mkmanager "storage" storage) "storage" true)]
+  (let [c (get-cache (mkmanager "storage" storage) "storage")]
     (intern (create-ns 'user) '_cache c)
     @(promise)))
